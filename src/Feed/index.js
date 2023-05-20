@@ -6,22 +6,6 @@ import { Component } from 'react';
 
 export default class Feed extends Component {
   
-  constructor(props){
-    super(props)
-    this.state = {
-      feed: this.props.data
-    }
-     this.like = this.like.bind(this)
-  
-  }
-
-  like(curtidas){
-    if(curtidas === true){
-      return require('../../assets/likeada.png')
-    }else{
-      return require('../../assets/like.png')
-    }
-  }
   render(){
 
     return (
@@ -59,11 +43,10 @@ export default class Feed extends Component {
 
             <View style={styles.feedIcons}>
               <TouchableOpacity>
-              
-              <Image 
-                source={this.like(this.props.data.curtidas)}
-                style={styles.icons}
-              />
+                <Image 
+                  source={require('../../assets/like.png')}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
 
               <TouchableOpacity>
@@ -152,6 +135,4 @@ const styles = StyleSheet.create({
     width: 100,
 
   }
-
-  
 });

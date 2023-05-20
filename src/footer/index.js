@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { MaterialIcons, Feather, Foundation ,  } from '@expo/vector-icons'; 
 

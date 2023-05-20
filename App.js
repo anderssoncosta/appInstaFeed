@@ -1,5 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
+import { FlatList, Image, StyleSheet, View } from 'react-native';
 import Feed from './src/Feed';
 import { Component } from 'react';
 import Footer from './src/footer';
@@ -69,8 +68,6 @@ export default class App extends Component {
     }
   }
 
-  
-
   render(){
       return (
         <View style={styles.container}>
@@ -87,6 +84,7 @@ export default class App extends Component {
         <View style={styles.footer} >
           <Footer />
         </View>
+        
         </View>
     );
   }
