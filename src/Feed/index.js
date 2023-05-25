@@ -1,13 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import { Component } from 'react';
-
+import { AntDesign } from '@expo/vector-icons';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class Feed extends Component {
   
+  constructor(props){
+    super(props)
+    this.state = {
+       feed: this.props.data
+    }
+    this.trocaIcone = this.trocaIcone.bind(this)
+    this.like = this.like.bind(this)
+  }
+
+    trocaIcone = (curtidas) =>{
+      return curtidas ? require('../../assets/like.png') : require('../../assets/likeada.png')
+    }
+
+    like = () => {
+      let feed = this.state.feed
+
+      if( feed.curtidas === true ){
+        this.setState({
+          feed: {
+            curtidas: false
+          }
+        })
+      }else{
+        this.setState({
+          feed: {
+            curtidas: true
+          }
+        })
+      }
+
+      console.log(feed.curtidas)
+    }
+
   render(){
 
+    
+    
     return (
         <View style={styles.container}>
           
@@ -21,13 +54,13 @@ export default class Feed extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <Text 
+                <Text
                   style={styles.feedNome}>
                     { this.props.data.nomePerfil }
                 </Text>
               </TouchableOpacity>
             </View>
-            
+
             <TouchableOpacity>
               <AntDesign name="ellipsis1" size={24} color="black" />
             </TouchableOpacity>
@@ -42,15 +75,16 @@ export default class Feed extends Component {
             </View>
 
             <View style={styles.feedIcons}>
-              <TouchableOpacity>
-                <Image 
-                  source={require('../../assets/like.png')}
+              <TouchableOpacity onPress={this.like} >
+                <Image  
+                  source={this.trocaIcone(this.state.feed.curtidas)}
                   style={styles.icons}
                 />
               </TouchableOpacity>
 
               <TouchableOpacity>
-                <Image 
+                
+                 <Image 
                   source={require('../../assets/send.png')}
                   style={styles.icons}
                 />
@@ -70,7 +104,6 @@ export default class Feed extends Component {
               </Text>
             </View>    
 
-          <StatusBar style="auto" />
         </View>
     );
   }
@@ -81,20 +114,20 @@ export default class Feed extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 5,
+    // marginTop: 5,
   },
   info:{
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 10
   },
   feedInfo: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignContent: 'flex-start',
-    margin: 8
+    // margin: 8
   },
   feedPerfilImg: {
     width: 50,
@@ -104,7 +137,7 @@ const styles = StyleSheet.create({
   },
   feedNome:{
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   postFeed:{
     width: '100%',
@@ -118,14 +151,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignContent: 'flex-start',
+    padding: 10
   },
   icons:{
     width: 25,
     height:25,
-    margin: 8
+    marginRight: 8,
   },
   feedDescricao: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 10
   },
   textoPost: {
     fontSize: 14,
@@ -133,6 +168,5 @@ const styles = StyleSheet.create({
   },
   descricao: {
     width: 100,
-
   }
 });
